@@ -4,8 +4,9 @@ import BaseHead from '@components/BaseHead.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import FormattedDate from '@components/FormattedDate.astro';
+import type { Collection } from '@/types/collections.d';
 
-type Props = CollectionEntry<'blog'>['data'];
+type Props = CollectionEntry<Collection>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
 ---
