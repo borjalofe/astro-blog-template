@@ -1,5 +1,5 @@
 ---
-import BaseHead from '@components/BaseHead.astro';
+import Head from '@/components/Head.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
@@ -17,7 +17,7 @@ const posts: Post[] = (await getCollection(collection)).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<Head title={SITE_TITLE} description={SITE_DESCRIPTION} />
 		<style>
 			main {
 				width: 960px;
