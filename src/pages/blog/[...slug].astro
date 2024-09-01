@@ -5,12 +5,12 @@ import PageContent from '@/layouts/PageContent.astro';
 import type { Collection, Post } from '@/types/collections.d';
 
 export async function getStaticPaths() {
-	const collection: Collection = "blog";
-	const posts: Post[] = await getCollection(collection);
-	return posts.map((post) => ({
-		params: { slug: post.slug },
-		props: post,
-	}));
+    const collection: Collection = "blog";
+    const posts: Post[] = await getCollection(collection);
+    return posts.map((post) => ({
+        params: { slug: post.slug },
+        props: post,
+    }));
 }
 type Props = Post;
 
@@ -19,5 +19,5 @@ const { Content } = await post.render();
 ---
 
 <PageContent {...post.data}>
-	<Content />
+    <Content />
 </PageContent>
