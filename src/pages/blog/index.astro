@@ -17,7 +17,7 @@ const posts: Post[] = (await getCollection(collection)).sort(
 <!doctype html>
 <html lang="en">
 	<head>
-		<Head title={SITE_TITLE} description={SITE_DESCRIPTION} />
+		<Head title={SITE_TITLE} description={SITE_DESCRIPTION}>
 		<style>
 			main {
 				width: 960px;
@@ -87,11 +87,11 @@ const posts: Post[] = (await getCollection(collection)).sort(
 				}
 			}
 		</style>
-	</head>
+	</Head>
 	<body>
 		<Header />
 		<main>
-			<section>
+		<section>
 				<ul>
 					{
 						posts.map((post) => (
