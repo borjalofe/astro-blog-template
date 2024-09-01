@@ -9,6 +9,12 @@
       "@components/*": [
         "components/*"
       ],
+      "@config/*": [
+        "config/*"
+      ],
+      "@icons/*": [
+        "components/icons/*"
+      ],
       "@layouts/*": [
         "layouts/*"
       ],
