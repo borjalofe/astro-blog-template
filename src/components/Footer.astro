@@ -11,7 +11,7 @@ const today = new Date();
             ({icon: Icon, label, path}) => (
                 <a href={path} target="_blank">
                     <span class="sr-only">{label}</span>
-                    <Icon />
+					{Icon && <Icon />}
                 </a>
             )
         )}
