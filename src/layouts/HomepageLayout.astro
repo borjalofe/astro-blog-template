@@ -1,0 +1,23 @@
+---
+import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
+import PageLayout from '@layouts/PageLayout.astro';
+import { type CommonFrontmatter } from '@/types/common.frontmatter';
+
+type Props = {
+    frontmatter: CommonFrontmatter;
+};
+
+const { frontmatter } = Astro.props;
+
+const homeFrontmatter: CommonFrontmatter = {
+    ...frontmatter,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+};
+---
+
+<PageLayout
+    frontmatter={homeFrontmatter}
+>
+    <slot />
+</PageLayout>
