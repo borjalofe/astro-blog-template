@@ -1,27 +1,52 @@
 ---
 import { getCollection } from 'astro:content';
 
-import Date from '@/components/Date.astro';
+import Date from '@components/Date.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
 import PageLayout from '@layouts/PageLayout.astro';
-import type { Collection, Post } from '@/types/collections.d';
+import type { Post } from '@/types/collections.d';
+import { type ArchiveFrontmatter } from '@/types/archive.frontmatter';
 import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
-const collection: Collection = "blog";
+type Props = {
+    frontmatter: ArchiveFrontmatter;
+};
+
+const { frontmatter } = Astro.props;
+
+const homeFrontmatter: CommonFrontmatter = {
+    ...frontmatter,
+    title: SITE_TITLE,
+    description: SITE_DESCRIPTION,
+};
+
+const { collection } = frontmatter;
 
 const posts: Post[] = (await getCollection(collection)).sort(
     (a: Post, b: Post) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-
-const frontmatter: CommonFrontmatter = {
-	title: SITE_TITLE,
-	description: SITE_DESCRIPTION,
-}
 ---
 
 <PageLayout
-    frontmatter={frontmatter}
+    frontmatter={homeFrontmatter}
 >
-    <style slot="head">
+    <section>
+        <ul>
+            {
+                posts.map((post) => (
+                    <li>
+                        <a href={`/blog/${post.slug}/`}>
+                            <img width={720} height={360} src={post.data.heroImage} alt="" />
+                            <h4 class="title">{post.data.title}</h4>
+                            <p class="date">
+                                <Date date={post.data.pubDate} />
+                            </p>
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </section>
+    <style>
         ul {
             display: flex;
             flex-wrap: wrap;
@@ -87,21 +112,4 @@ const frontmatter: CommonFrontmatter = {
             }
         }
     </style>
-    <section>
-        <ul>
-            {
-                posts.map((post) => (
-                    <li>
-                        <a href={`/blog/${post.slug}/`}>
-                            <img width={720} height={360} src={post.data.heroImage} alt="" />
-                            <h4 class="title">{post.data.title}</h4>
-                            <p class="date">
-                                <Date date={post.data.pubDate} />
-                            </p>
-                        </a>
-                    </li>
-                ))
-            }
-        </ul>
-    </section>
 </PageLayout>
