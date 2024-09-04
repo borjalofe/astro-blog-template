@@ -4,16 +4,42 @@ import type { CollectionEntry } from 'astro:content';
 import Date from '@components/Date.astro';
 import MainLayout from '@layouts/MainLayout.astro';
 import type { Collection } from '@/types/collections.d';
+import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
 type Props = CollectionEntry<Collection>['data'];
 
 const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
+
+const frontmatter: CommonFrontmatter = {
+	title,
+	description,
+}
 ---
+
 <MainLayout
-    description={description}
-    title={title}
+    frontmatter={frontmatter}
 >
-    <style slot="head">
+    <article>
+        <div class="hero-image">
+            {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+        </div>
+        <div class="prose">
+            <div class="title">
+                <div class="date">
+                    <Date date={pubDate} />
+                    {updatedDate && (
+                        <div class="last-updated-on">
+                            Last updated on <Date date={updatedDate} />
+                        </div>
+                    )}
+                </div>
+                <h1>{title}</h1>
+                <hr />
+            </div>
+            <slot />
+        </div>
+    </article>
+    <style>
         main {
             width: calc(100% - 2em);
             max-width: 100%;
@@ -52,24 +78,4 @@ const { title, description, pubDate, updatedDate, heroImage } = Astro.props;
             font-style: italic;
         }
     </style>
-    <article>
-        <div class="hero-image">
-            {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-        </div>
-        <div class="prose">
-            <div class="title">
-                <div class="date">
-                    <Date date={pubDate} />
-                    {updatedDate && (
-                        <div class="last-updated-on">
-                            Last updated on <Date date={updatedDate} />
-                        </div>
-                    )}
-                </div>
-                <h1>{title}</h1>
-                <hr />
-            </div>
-            <slot />
-        </div>
-    </article>
 </MainLayout>

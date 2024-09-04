@@ -2,20 +2,19 @@
 import Head from '@components/Head.astro';
 import Header from '@components/Header.astro';
 import Footer from '@components/Footer.astro';
+import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
 type Props = {
-    description: string;
-    title: string;
+	frontmatter: CommonFrontmatter,
 }
 
-const { description, title } = Astro.props;
+const { frontmatter } = Astro.props;
 ---
 
 <!doctype html>
 <html lang="en">
     <Head
-        description={description}
-        title={title}
+        frontmatter={frontmatter}
     >
         <slot name="head" />
     </Head>

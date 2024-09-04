@@ -5,16 +5,21 @@ import Date from '@/components/Date.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
 import MainLayout from '@/layouts/MainLayout.astro';
 import type { Collection, Post } from '@/types/collections.d';
+import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
 const collection: Collection = "blog";
 
 const posts: Post[] = (await getCollection(collection)).sort(
     (a: Post, b: Post) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const frontmatter: CommonFrontmatter = {
+	title: SITE_TITLE,
+	description: SITE_DESCRIPTION,
+}
 ---
 
 <MainLayout
-    description={SITE_DESCRIPTION}
-    title={SITE_TITLE}
+    frontmatter={frontmatter}
 >
     <style slot="head">
         main {

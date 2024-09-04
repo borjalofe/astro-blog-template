@@ -1,12 +1,19 @@
 ---
+import type { CollectionEntry } from 'astro:content';
+
 import PageContent from '@/layouts/PageContent.astro';
+import type { Collection } from '@/types/collections.d';
+
+const props: CollectionEntry<Collection>['data'] = {
+    title: 'About Me',
+    description: 'Lorem ipsum dolor sit amet',
+    heroImage: '/blog-placeholder-about.jpg',
+    pubDate: new Date('August 08 2021'),
+};
 ---
 
 <PageContent
-    title="About Me"
-    description="Lorem ipsum dolor sit amet"
-    pubDate={new Date('August 08 2021')}
-    heroImage="/blog-placeholder-about.jpg"
+    {...props}
 >
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
