@@ -2,8 +2,8 @@
 import { getCollection } from 'astro:content';
 
 import Date from '@/components/Date.astro';
-import HTML from '@/components/HTML.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
+import PageLayout from '@layouts/PageLayout.astro';
 import type { Collection, Post } from '@/types/collections.d';
 import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
@@ -18,13 +18,10 @@ const frontmatter: CommonFrontmatter = {
 }
 ---
 
-<HTML
+<PageLayout
     frontmatter={frontmatter}
 >
     <style slot="head">
-        main {
-            width: 960px;
-        }
         ul {
             display: flex;
             flex-wrap: wrap;
@@ -107,4 +104,4 @@ const frontmatter: CommonFrontmatter = {
             }
         </ul>
     </section>
-</HTML>
+</PageLayout>

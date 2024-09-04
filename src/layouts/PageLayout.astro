@@ -1,0 +1,40 @@
+---
+import HTML from '@components/HTML.astro';
+import { type CommonFrontmatter } from '@/types/common.frontmatter';
+
+type Props = {
+    frontmatter: CommonFrontmatter;
+};
+
+const { frontmatter } = Astro.props;
+const { heroImage } = frontmatter;
+---
+
+<HTML
+    frontmatter={frontmatter}
+>
+    <div class="prose">
+        <div class="hero-image">
+            {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
+        </div>
+        <slot />
+    </div>
+    <style>
+        .hero-image {
+            width: 100%;
+        }
+        .hero-image img {
+            display: block;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: var(--box-shadow);
+        }
+        .prose {
+            width: 720px;
+            max-width: calc(100% - 2em);
+            margin: auto;
+            padding: 1em;
+            color: rgb(var(--gray-dark));
+        }
+    </style>
+</HTML>

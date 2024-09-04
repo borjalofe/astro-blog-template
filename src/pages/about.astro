@@ -1,19 +1,16 @@
 ---
-import type { CollectionEntry } from 'astro:content';
+import PageLayout from '@/layouts/PageLayout.astro';
+import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
-import PageContent from '@/layouts/PageContent.astro';
-import type { Collection } from '@/types/collections.d';
-
-const props: CollectionEntry<Collection>['data'] = {
+const frontmatter: CommonFrontmatter = {
     title: 'About Me',
     description: 'Lorem ipsum dolor sit amet',
     heroImage: '/blog-placeholder-about.jpg',
-    pubDate: new Date('August 08 2021'),
 };
 ---
 
-<PageContent
-    {...props}
+<PageLayout
+    frontmatter={frontmatter}
 >
     <p>
         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
@@ -66,4 +63,4 @@ const props: CollectionEntry<Collection>['data'] = {
         ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
         proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
     </p>
-</PageContent>
+</PageLayout>

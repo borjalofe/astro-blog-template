@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 import Date from '@components/Date.astro';
-import HTML from '@/components/HTML.astro';
+import HTML from '@components/HTML.astro';
 import type { Collection } from '@/types/collections.d';
 import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
@@ -19,32 +19,25 @@ const frontmatter: CommonFrontmatter = {
 <HTML
     frontmatter={frontmatter}
 >
-    <article>
+    <article class="prose">
         <div class="hero-image">
             {heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
         </div>
-        <div class="prose">
-            <div class="title">
-                <div class="date">
-                    <Date date={pubDate} />
-                    {updatedDate && (
-                        <div class="last-updated-on">
-                            Last updated on <Date date={updatedDate} />
-                        </div>
-                    )}
-                </div>
-                <h1>{title}</h1>
-                <hr />
+        <div class="title">
+            <div class="date">
+                <Date date={pubDate} />
+                {updatedDate && (
+                    <div class="last-updated-on">
+                        Last updated on <Date date={updatedDate} />
+                    </div>
+                )}
             </div>
-            <slot />
+            <h1>{title}</h1>
+            <hr />
         </div>
+        <slot />
     </article>
     <style>
-        main {
-            width: calc(100% - 2em);
-            max-width: 100%;
-            margin: 0;
-        }
         .hero-image {
             width: 100%;
         }
