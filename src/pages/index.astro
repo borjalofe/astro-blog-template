@@ -1,6 +1,6 @@
 ---
 import { SITE_TITLE, SITE_DESCRIPTION } from '@/consts';
-import MainLayout from '@layouts/MainLayout.astro';
+import HTML from '@/components/HTML.astro';
 import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
 const frontmatter: CommonFrontmatter = {
@@ -9,7 +9,7 @@ const frontmatter: CommonFrontmatter = {
 }
 ---
 
-<MainLayout
+<HTML
     frontmatter={frontmatter}
 >
     <h1>🧑‍🚀 Hello, Astronaut!</h1>
@@ -38,4 +38,4 @@ const frontmatter: CommonFrontmatter = {
         or <a href="https://github.com/borjalofe/astro-blog-template/issues">create an issue</a> to
         ask questions.
     </p>
-</MainLayout>
+</HTML>

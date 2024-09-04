@@ -2,7 +2,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 import Date from '@components/Date.astro';
-import MainLayout from '@layouts/MainLayout.astro';
+import HTML from '@/components/HTML.astro';
 import type { Collection } from '@/types/collections.d';
 import { type CommonFrontmatter } from '@/types/common.frontmatter';
 
@@ -16,7 +16,7 @@ const frontmatter: CommonFrontmatter = {
 }
 ---
 
-<MainLayout
+<HTML
     frontmatter={frontmatter}
 >
     <article>
@@ -78,4 +78,4 @@ const frontmatter: CommonFrontmatter = {
             font-style: italic;
         }
     </style>
-</MainLayout>
+</HTML>
