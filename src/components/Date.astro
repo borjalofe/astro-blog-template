@@ -1,17 +1,26 @@
 ---
+import { defaultLocale } from '@/config/i18n.config';
+import type { DateTimeFormatOptionsModule } from '@/types/i18n';
+
 interface Props {
     date: Date;
 }
 
 const { date } = Astro.props;
+
+// We set the locale up from Astro's current locale if exists.
+// Otherwise, we'll use our default locale.
+const locale = Astro.currentLocale ?? defaultLocale;
+
+// We dynamically import datetime localized options 
+const dateOptionsModule = (await import(
+    `../locales/${locale}/date.options.ts`
+)) as DateTimeFormatOptionsModule;
+const dateOptions = dateOptionsModule.default;
 ---
 
 <time datetime={date.toISOString()}>
     {
-        date.toLocaleDateString('en-us', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-        })
+        date.toLocaleDateString(locale, dateOptions)
     }
 </time>
