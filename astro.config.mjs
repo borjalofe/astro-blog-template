@@ -4,7 +4,7 @@ import react from "@astrojs/react";
 import sitemap from '@astrojs/sitemap';
 
 import { SITE_URL as site } from './src/consts';
-import { defaultLocale, locales } from './src/i18n';
+import { defaultLocale, locales } from './src/config/i18n.config';
 
 
 // https://astro.build/config
